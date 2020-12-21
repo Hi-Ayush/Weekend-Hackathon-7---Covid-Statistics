@@ -53,11 +53,11 @@ app.get('/healthyStates',(req, res)=>{
 
         let healthyStates = [];
         data.forEach(state=>{
-            let morality = parseFloat((state.death / state.infected).toFixed(5));
-            if(morality < 0.005){
+            let mortality = parseFloat((state.death / state.infected).toFixed(5));
+            if(mortality < 0.005){
                 healthyStates.push({
                     state: state.state,
-                    morality: morality
+                    mortality: mortality
                 });
             }
         });
