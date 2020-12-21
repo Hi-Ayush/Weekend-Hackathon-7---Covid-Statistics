@@ -37,31 +37,31 @@ app.get("/totalDeath",(req,res)=>{
 })
 
 app.get("/hotspotStates",(req,res)=>{
-    let hotspot = [];
+    let hotspotStates = [];
         data.forEach(state=>{
             let rate = parseFloat(((state.infected-state.recovered) / state.infected).toFixed(5));
             if(rate > 0.1){
-                hotspot.push({
+                hotspotStates.push({
                     state: state.state,
                     rate: rate
                 });
             }
         });
-        res.send( {data: hotspot});
+        res.send({data:hotspotStates});
 })
 app.get('/healthyStates',(req, res)=>{
 
-        let healthy = [];
+        let healthyStates = [];
         data.forEach(state=>{
-            const morality = parseFloat((state.death / state.infected).toFixed(5));
+            let morality = parseFloat((state.death / state.infected).toFixed(5));
             if(morality < 0.005){
-                healthy.push({
+                healthyStates.push({
                     state: state.state,
                     morality: morality
                 });
             }
         });
-        res.send( {data: healthy});
+        res.send({data:healthyStates});
     });
 
 app.listen(port, () => console.log(`App listening on port ${port}!`))
