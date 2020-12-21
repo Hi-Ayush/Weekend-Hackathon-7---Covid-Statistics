@@ -39,7 +39,7 @@ app.get("/totalDeath",(req,res)=>{
 app.get("/hotspotStates",(req,res)=>{
     let hotspot = [];
         data.forEach(state=>{
-            let rate = ((state.infected-state.recovered) / state.infected).toFixed(5);
+            let rate = parseFloat(((state.infected-state.recovered) / state.infected).toFixed(5));
             if(rate > 0.1){
                 hotspot.push({
                     state: state.state,
@@ -53,7 +53,7 @@ app.get('/healthyStates',(req, res)=>{
 
         let healthy = [];
         data.forEach(state=>{
-            const morality = (state.death / state.infected).toFixed(5);
+            const morality = parseFloat((state.death / state.infected).toFixed(5));
             if(morality < 0.005){
                 healthy.push({
                     state: state.state,
